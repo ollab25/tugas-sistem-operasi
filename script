@@ -1,0 +1,94 @@
+<?php
+function IPnya() {
+    $ipaddress = '';
+    if (getenv('HTTP_CLIENT_IP'))
+        $ipaddress = getenv('HTTP_CLIENT_IP');
+    else if(getenv('HTTP_X_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
+    else if(getenv('HTTP_X_FORWARDED'))
+        $ipaddress = getenv('HTTP_X_FORWARDED');
+    else if(getenv('HTTP_FORWARDED_FOR'))
+        $ipaddress = getenv('HTTP_FORWARDED_FOR');
+    else if(getenv('HTTP_FORWARDED'))
+        $ipaddress = getenv('HTTP_FORWARDED');
+    else if(getenv('REMOTE_ADDR'))
+        $ipaddress = getenv('REMOTE_ADDR');
+    else
+        $ipaddress = 'IP Tidak Dikenali';
+ 
+    return $ipaddress;
+}
+$ipaddress = $_SERVER['REMOTE_ADDR'];
+echo "IP anda adalah : ";
+echo IPnya();
+echo "<br>Browser : ";
+echo $_SERVER['HTTP_USER_AGENT'];
+echo "<br> Sistem Operasi :";
+echo php_uname();
+?>
+
+<html>
+<head>
+    <title> Info Client</title>
+	<style type="text/css">
+	html {
+		font-family: times, serif; font-size:14pt; font-style:italic"
+	}
+	table {
+		border-collapse: collapse;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	table, th,td{
+		padding:5px;
+	}
+	th{
+		background-color: #0000FF;
+		color: #fff;
+	}
+	tr:nth-child(even){
+		background-color:#66FFFF
+	}
+	h1{
+		margin-bottom: 0;
+		
+	}
+</style>
+</head>
+<body bgcolor="#0000FF">
+<table border="1">
+<tr align="center"></tr>
+<tr>
+     <td><b>Nim</b></td>
+	 <td>:</td>
+	 <td>2014081008</td>
+</tr>
+<tr>
+     <td><b>Nama</b></td>
+	 <td>:</td>
+	 <td>AGUS SUPRIYANTO</td>
+</tr>
+<tr>
+     <td><b>Prodi :</b></td>
+	 <td>:</td>
+	 <td>TI 2014 B</td>
+</tr>
+<tr>
+     <td><b>IP anda adalah </b></td>
+	 <td>:</td>
+	 <td><?php echo IPnya();?></td>
+</tr>
+<tr>
+     <td><b>Browser</b></td>
+	 <td>:</td>
+	 <td><?php echo $_SERVER['HTTP_USER_AGENT'];?></td>
+</tr>
+<tr>
+     <td><b>Sistem Operasi</b></td>
+	 <td>:</td>
+	 <td><?php echo php_uname(); 
+?>
+</td>
+</tr>
+</body>
+</table>
